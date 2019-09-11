@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, Fragment } from "react";
+import { utils } from "pixi.js-legacy";
+import { App as PixiApp } from "./pixi";
+import Color from "./helpers/Color";
 
 function App() {
+  const [backgroudColor, setBackgroundColor] = useState("black");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <PixiApp width={640} height={640} backgroundColor={backgroudColor} />
+      <button
+        onClick={() =>
+          setBackgroundColor(utils.string2hex(Color.getRandomColor()))
+        }
+      >
+        Change background color
+      </button>
+    </Fragment>
   );
 }
 
